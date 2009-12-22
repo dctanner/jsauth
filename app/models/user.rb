@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
   private
   
   def map_openid_registration(registration)
-    
     if registration.empty?
       # no email returned
       self.email_autoset = false

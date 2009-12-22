@@ -1,0 +1,4 @@
+<% form_for :user_session, @user_session, :url => user_session_url, :html => { :method => :post, :class => "new_user_session", :id => "openid_form" } do |f| %>
+	<%= f.text_field 'openid_identifier', :value => 'http://yahoo.com/' %>
+	<%= submit_tag "Sign-In" %>
+<% end %>

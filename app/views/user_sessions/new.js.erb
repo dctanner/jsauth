@@ -257,7 +257,5 @@
 		var scr = document.getElementById('jsauth'); 
 		scr.innerHTML = "<%= escape_javascript(render(:partial => 'new')) %>";
 		sleep(0.5);
-	$(function() {
 		openid.init('user_session[openid_identifier]');
-	});
 });

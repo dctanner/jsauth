@@ -13,11 +13,11 @@ var providers_large = {
     yahoo: {
         name: 'Yahoo',      
         url: 'http://yahoo.com/'
-    },
-	windowslive: {
-        name: 'WindowsLive',
-        url: 'http://OpenID.Live-INT.com/'
     }
+	// windowslive: {
+	//         name: 'WindowsLive',
+	//         url: 'http://OpenID.Live-INT.com/'
+	//     }
 };
 var providers_small = {
 	windowslive: {

@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       format.html do
-        @ugly_js = "openid.signin(openid.readCookie(), false);" if params[:autosubmit]
+        @ugly_js = "openid.signin('#{params[:autosubmit]}', false);" if params[:autosubmit]
         render
       end
       format.js { render :layout => false }

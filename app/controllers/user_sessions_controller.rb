@@ -29,8 +29,14 @@ class UserSessionsController < ApplicationController
         redirect_to jsauth_success_url(@user)
       else
         # TODO: A very brittle way of catching non-registered users and then submitting the registration form so they don't notice. We really should raise and rescue, but I would rather wait until auto_register works properly and fetches the email then hack authlogic_openid
+        # raise params.inspect
+        
+          openid_providers = {
+            "https://www.google.com/accounts/o8/ud" => "google",
+            "https://open.login.yahooapis.com/openid/op/auth" => "yahoo"
+          }
         if @user_session.errors.on(:openid_identifier) == "did not match any users in our database, have you set up your account to use OpenID?"
-          redirect_to :controller => 'users', :action => 'new', :autosubmit => 'true'
+          redirect_to :controller => 'users', :action => 'new', :autosubmit => openid_providers[params["openid.op_endpoint"]]
         else
           render :action => :new
         end

@@ -254,8 +254,10 @@
 	
 	
 	// --------
-	
-	var scr = document.getElementById('jsauth'); 
-	scr.innerHTML = "<%= escape_javascript(render(:partial => 'new')) %>";
-	openid.init('user_session[openid_identifier]');
+	$(function() {
+		
+		var scr = document.getElementById('jsauth'); 
+		scr.innerHTML = "<%= escape_javascript(render(:partial => 'new')) %>";
+		openid.init('user_session[openid_identifier]');
+	});
 });

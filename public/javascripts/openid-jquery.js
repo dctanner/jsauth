@@ -89,28 +89,28 @@ var providers_small = {
         url: 'http://openid.orange.fr/'
     }
 };
-// var providers = jQuery.extend({}, providers_large, providers_small);
-var providers = jQuery.extend({}, providers_large);
+// var providers = $.extend({}, providers_large, providers_small);
+var providers = $.extend({}, providers_large);
 
 var openid = {
 
 	cookie_expires: 6*30,	// 6 months.
 	cookie_name: 'openid_provider',
 	cookie_path: '/',
-	
-	img_path: '/images/',
+
+	img_path: '<%= @this_base_url %>/images/',
 	
 	input_id: null,
 	provider_url: null,
 	
     init: function(input_id) {
         
-        var openid_btns = jQuery('#openid_btns');
+        var openid_btns = $('#openid_btns');
         
         this.input_id = input_id;
         
-        jQuery('#openid_choice').show();
-        jQuery('#openid_input_area').empty();
+        $('#openid_choice').show();
+        $('#openid_input_area').empty();
         
         // add box for each provider
         for (id in providers_large) {
@@ -126,7 +126,7 @@ var openid = {
         // 	        }
         // }
         
-        jQuery('#openid_form').submit(this.submit);
+        $('#openid_form').submit(this.submit);
         
         var box_id = this.readCookie();
         if (box_id) {
@@ -162,7 +162,7 @@ var openid = {
 			
 			this.setOpenIdUrl(provider['url']);
 			if (! onload) {
-				jQuery('#openid_form').submit();
+				$('#openid_form').submit();
 			}	
 		}
     },
@@ -171,29 +171,29 @@ var openid = {
         
     	var url = openid.provider_url; 
     	if (url) {
-    		url = url.replace('{username}', jQuery('#openid_username').val());
+    		url = url.replace('{username}', $('#openid_username').val());
     		openid.setOpenIdUrl(url);
     	}
     	return true;
     },
     setOpenIdUrl: function (url) {
     
-    	var hidden = jQuery('#'+this.input_id);
+    	var hidden = $('#'+this.input_id);
     	if (hidden.length > 0) {
     		hidden.value = url;
     	} else {
-    		jQuery('#openid_form').append('<input type="hidden" id="' + this.input_id + '" name="' + this.input_id + '" value="'+url+'"/>');
+    		$('#openid_form').append('<input type="hidden" id="' + this.input_id + '" name="' + this.input_id + '" value="'+url+'"/>');
     	}
     },
     highlight: function (box_id) {
     	
     	// remove previous highlight.
-    	var highlight = jQuery('#openid_highlight');
+    	var highlight = $('#openid_highlight');
     	if (highlight) {
-    		highlight.replaceWith(jQuery('#openid_highlight a')[0]);
+    		highlight.replaceWith($('#openid_highlight a')[0]);
     	}
     	// add new highlight.
-    	jQuery('.'+box_id).wrap('<div id="openid_highlight"></div>');
+    	$('.'+box_id).wrap('<div id="openid_highlight"></div>');
     },
     setCookie: function (value) {
     
@@ -215,7 +215,7 @@ var openid = {
     },
     useInputBox: function (provider) {
    	
-		var input_area = jQuery('#openid_input_area');
+		var input_area = $('#openid_input_area');
 		
 		var html = '';
 		var id = 'openid_username';
@@ -237,6 +237,6 @@ var openid = {
 		input_area.empty();
 		input_area.append(html);
 
-		jQuery('#'+id).focus();
+		$('#'+id).focus();
     }
 };

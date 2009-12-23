@@ -8,6 +8,7 @@ class UserSessionsController < ApplicationController
   end
   
   def new
+    @this_base_url = "http://#{self.request.host}#{':'+self.request.port.to_s if self.request.port != 80}"
     @user_session = UserSession.new
   end
   

@@ -1,6 +1,7 @@
 <form action="http://localhost:9393/auth" method="post" id="jsauth_success_form">
 	<input type="hidden" name="id" value="<%= @user.id %>" />
 	<input type="hidden" name="email" value="<%= @user.email %>" />
+	<input type="hidden" name="email" value="<%= @user.email %>" />
 	<input type="hidden" name="signature" value="USEHMACSIGN" />
 	<input type="submit" value="Complete login to actual app" />
 </form>
@@ -8,14 +9,5 @@
 
 
 <script type="text/javascript" charset="utf-8">
-	// $('#jsauth_success_form').submit();
+	$('#jsauth_success_form').submit();
 </script>
-
-<p>
-  <b>Email:</b>
-	<% if @user.email_autoset %>
-  	<%=h @user.email %>
-	<% else %>
-		OpenID Provider didn't return your email address or <br />I might haven't found out yet how to fetch it. :-)
-	<% end %>
-</p>

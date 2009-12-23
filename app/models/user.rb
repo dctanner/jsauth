@@ -7,7 +7,13 @@ class User < ActiveRecord::Base
     # optional, but if a user registers by openid, he should at least share his email-address with the app
     c.validate_email_field = false
     # fetch email by ax
-    c.openid_required_fields = [:email,"http://axschema.org/contact/email"]
+    # c.openid_required_fields = [:nickname, :email]
+    c.openid_required_fields = [
+                                  "http://axschema.org/contact/email",
+                                  "http://axschema.org/namePerson/first",
+                                  "http://axschema.org/namePerson/last"
+                                 ]
+    # c.openid_required_fields = [:email,"http://axschema.org/contact/email"]
     #c.openid_required_fields = [:language, "http://axschema.org/pref/language"]
   end
   
@@ -19,6 +25,10 @@ class User < ActiveRecord::Base
     #self.website = facebook_session.user.website
   end
   
+  def name
+    self.first_name + ' ' + self.last_name
+  end
+  
   private
   
   def map_openid_registration(registration)
@@ -26,9 +36,13 @@ class User < ActiveRecord::Base
       # no email returned
       self.email_autoset = false
     else
+      registration_email = registration["http://axschema.org/contact/email"].first
+      self.first_name = registration["http://axschema.org/namePerson/first"].first
+      self.last_name = registration["http://axschema.org/namePerson/last"].first
+      
       # email by sreg
-      unless registration["email"].nil? && registration["email"].blank? 
-        self.email = registration["email"] 
+      unless registration_email.nil? && registration_email.blank? 
+        self.email = registration_email 
         self.email_autoset = true
       else
         # email by ax

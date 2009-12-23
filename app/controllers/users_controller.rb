@@ -19,7 +19,8 @@ class UsersController < ApplicationController
     @user.save do |result|
       if result
         flash[:notice] = "Account registered!"
-        redirect_back_or_default account_url
+        # redirect_back_or_default account_url
+        redirect_to jsauth_success_url(@user)
       else
         render :action => :new
       end

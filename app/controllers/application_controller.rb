@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   
   private
+    def jsauth_success_url(user)
+      app_url = "http://localhost:9393/authenticate"
+      params_to_send = Hash[*([:id, :email, :first_name, :last_name].map {|k| [k, user.send(k)] }).flatten]
+      params_to_send[:signature] = "USEHMACSIGN"
+      success_url = "#{app_url}?#{params_to_send.to_query}"
+    end
+  
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find

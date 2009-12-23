@@ -1,0 +1,7 @@
+jsauth todo:
+
+NEXT: in jsauth rails app, save the openid providers in the db, then when doing a non-registered redirect, generate a basic form and submit using js instead of loading the whole users/new page as it now done
+
+allow app's auth url to be set
+user id should be uuid
+user hmac sig?

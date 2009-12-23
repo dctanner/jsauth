@@ -1,6 +1,7 @@
 <script type="text/javascript">
 	jQuery(document).ready(function() {
-		openid.init('user[openid_identifier]');
+			openid.init('user[openid_identifier]');
+			<%= @ugly_js %>
 	});
 </script>
 <% hidden_field_tag :action, "verify" %>

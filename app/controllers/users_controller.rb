@@ -6,7 +6,10 @@ class UsersController < ApplicationController
     @user = User.new
     
     respond_to do |format|
-      format.html { render }
+      format.html do
+        @ugly_js = "openid.signin(openid.readCookie(), false);" if params[:autosubmit]
+        render
+      end
       format.js { render :layout => false }
     end
   end

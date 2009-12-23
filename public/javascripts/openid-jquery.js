@@ -13,16 +13,10 @@ var providers_large = {
     yahoo: {
         name: 'Yahoo',      
         url: 'http://yahoo.com/'
-    },    
-    aol: {
-        name: 'AOL',     
-        label: 'Enter your AOL screenname.',
-        url: 'http://openid.aol.com/{username}'
     },
-    openid: {
-        name: 'OpenID',     
-        label: 'Enter your OpenID.',
-        url: null
+	windowslive: {
+        name: 'WindowsLive',
+        url: 'http://OpenID.Live-INT.com/'
     }
 };
 var providers_small = {
@@ -95,7 +89,8 @@ var providers_small = {
         url: 'http://openid.orange.fr/'
     }
 };
-var providers = jQuery.extend({}, providers_large, providers_small);
+// var providers = jQuery.extend({}, providers_large, providers_small);
+var providers = jQuery.extend({}, providers_large);
 
 var openid = {
 
@@ -122,21 +117,21 @@ var openid = {
         
            	openid_btns.append(this.getBoxHTML(providers_large[id], 'large', '.gif'));
         }
-        if (providers_small) {
-        	openid_btns.append('<br/>');
-        	
-	        for (id in providers_small) {
-	        
-	           	openid_btns.append(this.getBoxHTML(providers_small[id], 'small', '.ico'));
-	        }
-        }
+        // if (providers_small) {
+        // 	openid_btns.append('<br/>');
+        // 	
+        // 	        for (id in providers_small) {
+        // 	        
+        // 	           	openid_btns.append(this.getBoxHTML(providers_small[id], 'small', '.ico'));
+        // 	        }
+        // }
         
         jQuery('#openid_form').submit(this.submit);
         
         var box_id = this.readCookie();
         if (box_id) {
         	this.signin(box_id, true);
-        }  
+        } 
     },
     getBoxHTML: function(provider, box_size, image_ext) {
             

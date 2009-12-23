@@ -117,6 +117,11 @@ var openid = {
         
            	openid_btns.append(this.getBoxHTML(providers_large[id], 'large', '.gif'));
         }
+		$('#openid_btns a').click(function() {
+			openid.signin('google');
+			// openid.signin($(this).attr('href'));
+			return false;
+		});
         // if (providers_small) {
         // 	openid_btns.append('<br/>');
         // 	
@@ -136,7 +141,7 @@ var openid = {
     getBoxHTML: function(provider, box_size, image_ext) {
             
         var box_id = provider["name"].toLowerCase();
-        return '<a title="'+provider["name"]+'" href="javascript: openid.signin(\''+ box_id +'\');"' +
+        return '<a title="'+provider["name"]+'" href="#'+ box_id +'"' +
         		' style="background: #FFF url(' + this.img_path + box_id + image_ext+') no-repeat center center" ' + 
         		'class="' + box_id + ' openid_' + box_size + '_btn"></a>';    
     

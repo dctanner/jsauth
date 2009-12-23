@@ -1,0 +1,15 @@
+<% form_for :user_session, @user_session, :url => user_session_url, :html => { :method => :post, :class => "new_user_session", :id => "openid_form" } do |f| %>
+  <%= f.error_messages %>
+  <input type="hidden" name="action" value="verify" />
+	<% field_set_tag 'Log In' do %>
+		<div id="openid_choice">
+			<p>Please click your account provider:</p>
+			<div id="openid_btns"></div>
+		</div>
+		
+		<div id="openid_input_area">
+			<%= text_field_tag 'openid_identifier', :id => 'openid_identifier', :value => 'http://'%>
+			<%= submit_tag "Sign-In" %>
+		</div>
+	<% end %>
+<% end %>

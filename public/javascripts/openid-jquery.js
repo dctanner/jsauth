@@ -14,10 +14,6 @@ var providers_large = {
         name: 'Yahoo',      
         url: 'http://yahoo.com/'
     }
-	// windowslive: {
-	//         name: 'WindowsLive',
-	//         url: 'http://OpenID.Live-INT.com/'
-	//     }
 };
 var providers_small = {
 	windowslive: {
